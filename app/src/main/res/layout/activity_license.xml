@@ -12,10 +12,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/license_title"
+        app:title="💳 License"
         app:navigationIcon="@drawable/ic_back" />
 
-    <!-- Status Card -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,67 +30,20 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/trialStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="License Status"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/licenseStatusTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Active"
-                android:textColor="#00AA44"
-                android:textSize="24sp"
+                android:text="🎉 3-Day Free Trial Active"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="4dp" />
+                android:textColor="#00AA44"
+                android:layout_gravity="center" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#EEF2F8"
                 android:layout_marginVertical="16dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/license_key"
-                    android:textColor="#555555" />
-
-                <TextView
-                    android:id="@+id/licenseKeyTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="COFC-XXXX-XXXX-XXXX"
-                    android:textColor="#111111"
-                    android:fontFamily="monospace" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Activate License -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF"
-        android:layout_marginTop="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,14 +55,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/licenseInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/license_enter_key"
+                    android:hint="Enter Sovereign Key"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -119,46 +70,41 @@
                 android:id="@+id/activateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/license_activate"
+                android:text="Activate"
                 style="@style/Widget.COFCGuard.Button"
                 android:layout_marginTop="12dp" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Purchase Plans -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Purchase Plans"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginTop="16dp" />
 
-    <!-- Monthly -->
     <Button
         android:id="@+id/monthlyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Monthly · €9.99"
+        android:text="📆 Monthly · €9.99"
         style="@style/Widget.COFCGuard.Button"
         android:backgroundTint="#F8FAFF"
         android:textColor="#0055FF"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginTop="8dp" />
 
-    <!-- Yearly -->
     <Button
         android:id="@+id/yearlyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Yearly · €69.00"
+        android:text="📅 Yearly · €69.00"
         style="@style/Widget.COFCGuard.Button"
         android:backgroundTint="#F8FAFF"
         android:textColor="#0055FF"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginTop="8dp" />
 
-    <!-- Lifetime (Best Value) -->
     <Button
         android:id="@+id/lifetimeButton"
         android:layout_width="match_parent"
@@ -166,6 +112,7 @@
         android:text="♾️ Lifetime · €690.00"
         style="@style/Widget.COFCGuard.Button"
         android:backgroundTint="#0055FF"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

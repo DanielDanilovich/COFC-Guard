@@ -9,49 +9,47 @@ object LicenseUtils {
     private const val KEY_LICENSE = "license_key"
     private const val KEY_VALID = "license_valid"
     private const val KEY_EXPIRY = "license_expiry"
+    private const val KEY_TRIAL_START = "trial_start"
+
+    private const val TRIAL_DAYS = 3
+
+    fun isTrialActive(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val trialStart = prefs.getLong(KEY_TRIAL_START, 0)
+        
+        if (trialStart == 0L) {
+            prefs.edit().putLong(KEY_TRIAL_START, System.currentTimeMillis()).apply()
+            return true
+        }
+        
+        val daysPassed = (System.currentTimeMillis() - trialStart) / (1000 * 60 * 60 * 24)
+        return daysPassed < TRIAL_DAYS
+    }
 
     fun hasValidLicense(context: Context): Boolean {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val isValid = prefs.getBoolean(KEY_VALID, false)
-        val expiry = prefs.getLong(KEY_EXPIRY, 0)
+        if (!isValid) return isTrialActive(context)
         
-        if (!isValid) return false
-        if (expiry == 0L) return true // Lifetime
+        val expiry = prefs.getLong(KEY_EXPIRY, 0)
+        if (expiry == 0L) return true
         
         return Date().time < expiry
     }
 
-    fun saveLicense(context: Context, licenseKey: String, plan: String) {
+    fun activateLicense(context: Context, licenseKey: String, plan: String) {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         prefs.edit().apply {
             putString(KEY_LICENSE, licenseKey)
             putBoolean(KEY_VALID, true)
             
-            // Set expiry based on plan
             val expiry = when (plan) {
                 "monthly" -> System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000)
                 "yearly" -> System.currentTimeMillis() + (365L * 24 * 60 * 60 * 1000)
-                else -> 0L // Lifetime
+                else -> 0L
             }
             putLong(KEY_EXPIRY, expiry)
             apply()
         }
-    }
-
-    fun clearLicense(context: Context) {
-        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        prefs.edit().clear().apply()
-    }
-
-    fun getLicenseStatus(context: Context): String {
-        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val isValid = prefs.getBoolean(KEY_VALID, false)
-        val expiry = prefs.getLong(KEY_EXPIRY, 0)
-        
-        if (!isValid) return "Invalid"
-        if (expiry == 0L) return "Lifetime"
-        if (Date().time > expiry) return "Expired"
-        
-        return "Active"
     }
 }

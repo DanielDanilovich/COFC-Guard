@@ -20,19 +20,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        lottieShield = findViewById(R.id.lottieShield)
-        lottieShield.setAnimation("shield.json")
-        lottieShield.playAnimation()
-        lottieShield.repeatCount = Int.MAX_VALUE
+            lottieShield = findViewById(R.id.lottieShield)
+            lottieShield.setAnimation("shield.json")
+            lottieShield.playAnimation()
+            lottieShield.repeatCount = Int.MAX_VALUE
 
-        startGuardService()
-        setupListeners()
-        startRealTimeUpdates()
-        animateUI()
-        startFakeDataUpdates()
+            startGuardService()
+            setupListeners()
+            startRealTimeUpdates()
+            animateUI()
+            startFakeDataUpdates()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
     }
 
     private fun animateUI() {

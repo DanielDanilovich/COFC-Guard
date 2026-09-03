@@ -1,6 +1,7 @@
 package com.cofc.guard.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,16 +33,25 @@ class LicenseActivity : AppCompatActivity() {
             }
         }
 
-        // Plans
+        // Plans - Open Payment Gateway
         binding.monthlyButton.setOnClickListener {
-            Toast.makeText(this, "📆 Monthly Plan: €9.99 - USDT TRC20", Toast.LENGTH_LONG).show()
+            openPaymentGateway("Monthly", "9.99")
         }
         binding.yearlyButton.setOnClickListener {
-            Toast.makeText(this, "📅 Yearly Plan: €69.00 - USDT TRC20", Toast.LENGTH_LONG).show()
+            openPaymentGateway("Yearly", "69.00")
         }
         binding.lifetimeButton.setOnClickListener {
-            Toast.makeText(this, "♾️ Lifetime Plan: €690.00 - USDT TRC20", Toast.LENGTH_LONG).show()
+            openPaymentGateway("Lifetime", "690.00")
         }
+    }
+
+    private fun openPaymentGateway(plan: String, amount: String) {
+        // Open PayRam payment page
+        val paymentUrl = "https://guard.cofc.io/pay?plan=$plan&amount=$amount"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl))
+        startActivity(intent)
+        
+        Toast.makeText(this, "💳 Redirecting to payment...", Toast.LENGTH_SHORT).show()
     }
 
     private fun navigateToMain() {

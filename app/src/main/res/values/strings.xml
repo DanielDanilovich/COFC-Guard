@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">COFC GUARD</string>
     <string name="app_description">Absolute Quantum Cyber Protection</string>
-    <string name="app_version">2.1.0</string>
+    <string name="app_version">2.4.0</string>
 
     <!-- Dashboard -->
     <string name="dashboard_layers">Quantum Layers</string>

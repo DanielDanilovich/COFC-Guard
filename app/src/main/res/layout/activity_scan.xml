@@ -13,8 +13,7 @@
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="🔍 Quantum Scan"
-        app:navigationIcon="@drawable/ic_back"
-        app:navigationOnClick="{ finish() }" />
+        app:navigationIcon="@drawable/ic_back" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

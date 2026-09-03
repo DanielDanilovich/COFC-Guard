@@ -13,7 +13,8 @@
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="📁 Quantum Logs"
-        app:navigationIcon="@drawable/ic_back" />
+        app:navigationIcon="@drawable/ic_back"
+        android:navigationOnClick="{ finish() }" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -33,12 +34,14 @@
                 android:id="@+id/logsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📁 Logs will appear here"
+                android:text="📁 Loading logs..."
                 android:fontFamily="monospace"
                 android:textSize="12sp"
-                android:minHeight="200dp"
+                android:minHeight="300dp"
                 android:background="#F8FAFF"
-                android:padding="8dp" />
+                android:padding="12dp"
+                android:scrollbars="vertical"
+                android:maxLines="20" />
 
             <LinearLayout
                 android:layout_width="match_parent"

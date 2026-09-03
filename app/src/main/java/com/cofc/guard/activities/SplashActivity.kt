@@ -14,9 +14,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
 
-        val hasValidLicense = LicenseUtils.hasValidLicense(this)
-
         Handler(Looper.getMainLooper()).postDelayed({
+            val hasValidLicense = LicenseUtils.hasValidLicense(this)
             val intent = if (hasValidLicense) {
                 Intent(this, MainActivity::class.java)
             } else {

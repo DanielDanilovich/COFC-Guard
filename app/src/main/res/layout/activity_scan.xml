@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8FAFF"
+    android:background="#F5F7FA"
     android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -31,7 +31,7 @@
             android:gravity="center">
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/scanProgress"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:progress="0"
@@ -51,7 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="▶ Start Scan"
-                style="@style/Widget.COFCGuard.Button"
+                android:backgroundTint="#0055FF"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
                 android:layout_marginTop="16dp" />
 
         </LinearLayout>

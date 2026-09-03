@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8FAFF"
+    android:background="#F5F7FA"
     android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -36,6 +36,33 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
+
+            <!-- Theme -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🌙 Theme" />
+
+                <Spinner
+                    android:id="@+id/themeSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/themes" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEF2F8"
+                android:layout_marginVertical="12dp" />
 
             <!-- Notifications -->
             <LinearLayout
@@ -102,10 +129,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🔄 Background Service" />
+                    android:text="🔄 Quantum Layers" />
 
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/backgroundSwitch"
+                    android:id="@+id/quantumSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true" />
@@ -124,25 +151,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="📤 Export Logs"
-                style="@style/Widget.COFCGuard.Button"
                 android:backgroundTint="#0055FF"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:padding="12dp" />
 
             <Button
                 android:id="@+id/clearDataButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="🗑️ Clear Data"
-                style="@style/Widget.COFCGuard.Button"
                 android:backgroundTint="#CC3300"
                 android:textColor="#FFFFFF"
+                android:padding="12dp"
                 android:layout_marginTop="8dp" />
 
             <!-- Version -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Version 2.2.0"
+                android:text="Version 6.0.1"
                 android:textSize="12sp"
                 android:textColor="#888888"
                 android:layout_gravity="center"

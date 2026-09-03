@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8FAFF"
+    android:background="#F5F7FA"
     android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#0055FF"
@@ -38,7 +37,7 @@
                 android:fontFamily="monospace"
                 android:textSize="12sp"
                 android:minHeight="300dp"
-                android:background="#F8FAFF"
+                android:background="#F5F7FA"
                 android:padding="12dp"
                 android:scrollbars="vertical"
                 android:maxLines="20" />
@@ -55,7 +54,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="📤 Export"
-                    style="@style/Widget.COFCGuard.Button"
+                    android:backgroundTint="#0055FF"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp"
                     android:layout_marginEnd="8dp" />
 
                 <Button
@@ -64,8 +65,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="🗑️ Clear"
-                    style="@style/Widget.COFCGuard.Button"
-                    android:backgroundTint="#CC3300" />
+                    android:backgroundTint="#CC3300"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp"
+                    android:layout_marginStart="8dp" />
 
             </LinearLayout>
 

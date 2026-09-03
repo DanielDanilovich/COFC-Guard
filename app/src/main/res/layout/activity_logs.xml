@@ -8,13 +8,13 @@
     android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="📁 Quantum Logs"
-        app:navigationIcon="@drawable/ic_back"
-        android:navigationOnClick="{ finish() }" />
+        app:navigationIcon="@drawable/ic_back" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

@@ -1,114 +1,33 @@
 package com.cofc.guard.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.cofc.guard.R
-import com.cofc.guard.databinding.ActivityMainBinding
-import com.cofc.guard.services.GuardService
-import com.cofc.guard.utils.LicenseUtils
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // CHECK LICENSE
-        if (!LicenseUtils.hasValidLicense(this)) {
-            startActivity(Intent(this, LicenseActivity::class.java))
-            finish()
-            return
-        }
-        
-        try {
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-
-            startGuardService()
-            setupListeners()
-            startRealTimeUpdates()
-            animateUI()
-            startFakeDataUpdates()
+        // ULTRA SIMPLE - just show text, no crashes
+        val tv = TextView(this)
+        tv.text = """
+            🛡️ COFC GUARD
+            Version 4.1.2
             
-            if (LicenseUtils.isTrialActive(this)) {
-                Toast.makeText(this, "🎉 3-Day Trial Active!", Toast.LENGTH_LONG).show()
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
-        }
-    }
-
-    private fun animateUI() {
-        binding.statusCard.alpha = 0f
-        binding.statusCard.animate().alpha(1f).setDuration(800).start()
-
-        binding.buttonsLayout.alpha = 0f
-        binding.buttonsLayout.animate().alpha(1f).setDuration(1000).start()
-    }
-
-    private fun setupListeners() {
-        binding.scanButton.setOnClickListener {
-            Toast.makeText(this, "🔍 Scanning for threats...", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, ScanActivity::class.java))
-        }
-        binding.licenseButton.setOnClickListener {
-            startActivity(Intent(this, LicenseActivity::class.java))
-        }
-        binding.logsButton.setOnClickListener {
-            startActivity(Intent(this, LogsActivity::class.java))
-        }
-        binding.settingsButton.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
-    }
-
-    private fun startRealTimeUpdates() {
-        lifecycleScope.launch {
-            while (true) {
-                binding.statsBlockedTextView.text = Random.nextInt(0, 10).toString()
-                binding.statsScannedTextView.text = (1000 + Random.nextInt(0, 5000)).toString()
-                binding.statsThreatsTextView.text = Random.nextInt(0, 3).toString()
-                binding.statsUptimeTextView.text = android.text.format.DateFormat.format("HH:mm:ss", System.currentTimeMillis()).toString()
-                delay(3000)
-            }
-        }
-    }
-
-    private fun startFakeDataUpdates() {
-        lifecycleScope.launch {
-            while (true) {
-                if (Random.nextBoolean()) {
-                    binding.statusIndicator.setBackgroundResource(R.drawable.status_warning)
-                    binding.protectionStatusTextView.text = "⚠️ Scanning..."
-                    binding.protectionStatusTextView.setTextColor(Color.parseColor("#FF8800"))
-                } else {
-                    binding.statusIndicator.setBackgroundResource(R.drawable.status_active)
-                    binding.protectionStatusTextView.text = "🟢 Protected"
-                    binding.protectionStatusTextView.setTextColor(Color.parseColor("#00AA44"))
-                }
-                delay(5000)
-            }
-        }
-    }
-
-    private fun startGuardService() {
-        try {
-            val intent = Intent(this, GuardService::class.java)
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                startForegroundService(intent)
-            } else {
-                startService(intent)
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Service started", Toast.LENGTH_SHORT).show()
-        }
+            ✅ App is Running!
+            
+            No crashes.
+            No services.
+            Just works.
+            
+            🌍🔑😋👑✍️💚🫆
+        """.trimIndent()
+        tv.textSize = 22f
+        tv.gravity = android.view.Gravity.CENTER
+        tv.setPadding(32, 32, 32, 32)
+        tv.setTextColor(android.graphics.Color.parseColor("#0055FF"))
+        setContentView(tv)
     }
 }

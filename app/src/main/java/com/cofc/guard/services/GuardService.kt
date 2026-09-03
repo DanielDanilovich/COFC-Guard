@@ -19,6 +19,7 @@ class GuardService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Simple service - just keep running
         return START_STICKY
     }
 
@@ -28,7 +29,9 @@ class GuardService : Service() {
                 CHANNEL_ID,
                 "COFC GUARD",
                 NotificationManager.IMPORTANCE_LOW
-            )
+            ).apply {
+                description = "Active protection"
+            }
             val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }

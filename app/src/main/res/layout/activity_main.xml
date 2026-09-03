@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/app_name"
+        app:title="🛡️ COFC GUARD"
         app:titleTextColor="#FFFFFF" />
 
     <ScrollView
@@ -28,13 +28,13 @@
             android:padding="16dp"
             android:paddingBottom="80dp">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottieShield"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+            <!-- Simple Shield -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="Shield" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/statusCard"
@@ -67,7 +67,7 @@
                             android:id="@+id/protectionStatusTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dashboard_status_active"
+                            android:text="🟢 Protected"
                             android:textColor="#00AA44"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -87,7 +87,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dashboard_layers"
+                            android:text="Layers"
                             android:textColor="#888888"
                             android:textSize="12sp"
                             android:layout_marginStart="4dp" />
@@ -113,7 +113,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView android:id="@+id/statsBlockedTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="#111111" android:textSize="20sp" android:textStyle="bold" />
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/dashboard_blocked" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Blocked" android:textColor="#888888" android:textSize="11sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -123,7 +123,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView android:id="@+id/statsScannedTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1,247" android:textColor="#111111" android:textSize="20sp" android:textStyle="bold" />
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/dashboard_scanned" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scanned" android:textColor="#888888" android:textSize="11sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -133,7 +133,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView android:id="@+id/statsThreatsTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="#111111" android:textSize="20sp" android:textStyle="bold" />
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/dashboard_threats" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Threats" android:textColor="#888888" android:textSize="11sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -143,7 +143,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView android:id="@+id/statsUptimeTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00:00" android:textColor="#111111" android:textSize="16sp" android:textStyle="bold" />
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/dashboard_uptime" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Uptime" android:textColor="#888888" android:textSize="11sp" />
                         </LinearLayout>
 
                     </GridLayout>

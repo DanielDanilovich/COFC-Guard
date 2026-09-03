@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.airbnb.lottie.LottieAnimationView
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityMainBinding
 import com.cofc.guard.services.GuardService
@@ -17,11 +16,11 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var lottieShield: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
+        // CHECK LICENSE OR TRIAL
         if (!LicenseUtils.hasValidLicense(this)) {
             startActivity(Intent(this, LicenseActivity::class.java))
             finish()
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        lottieShield = findViewById(R.id.lottieShield)
-        lottieShield.setAnimation("shield.json")
-        lottieShield.playAnimation()
-        lottieShield.repeatCount = Int.MAX_VALUE
 
         startGuardService()
         setupListeners()
@@ -53,23 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonsLayout.alpha = 0f
         binding.buttonsLayout.animate().alpha(1f).setDuration(1000).start()
-        
-        binding.lottieShield.animate()
-            .scaleX(1.3f)
-            .scaleY(1.3f)
-            .setDuration(2000)
-            .withEndAction {
-                binding.lottieShield.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(2000)
-                    .start()
-            }
-            .start()
     }
 
     private fun setupListeners() {
         binding.scanButton.setOnClickListener {
+            Toast.makeText(this, "🔍 Scanning for threats...", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ScanActivity::class.java))
         }
         binding.licenseButton.setOnClickListener {
@@ -115,9 +97,13 @@ class MainActivity : AppCompatActivity() {
     private fun startGuardService() {
         try {
             val intent = Intent(this, GuardService::class.java)
-            startForegroundService(intent)
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                startForegroundService(intent)
+            } else {
+                startService(intent)
+            }
         } catch (e: Exception) {
-            // Service already running
+            // Service already running or not needed
         }
     }
 }

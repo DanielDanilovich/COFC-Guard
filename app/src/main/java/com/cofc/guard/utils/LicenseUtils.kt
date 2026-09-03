@@ -6,11 +6,9 @@ import java.util.Date
 
 object LicenseUtils {
     private const val PREF_NAME = "cofc_guard_license"
-    private const val KEY_LICENSE = "license_key"
     private const val KEY_VALID = "license_valid"
     private const val KEY_EXPIRY = "license_expiry"
     private const val KEY_TRIAL_START = "trial_start"
-
     private const val TRIAL_DAYS = 3
 
     fun isTrialActive(context: Context): Boolean {
@@ -33,16 +31,13 @@ object LicenseUtils {
         
         val expiry = prefs.getLong(KEY_EXPIRY, 0)
         if (expiry == 0L) return true
-        
         return Date().time < expiry
     }
 
     fun activateLicense(context: Context, licenseKey: String, plan: String) {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         prefs.edit().apply {
-            putString(KEY_LICENSE, licenseKey)
             putBoolean(KEY_VALID, true)
-            
             val expiry = when (plan) {
                 "monthly" -> System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000)
                 "yearly" -> System.currentTimeMillis() + (365L * 24 * 60 * 60 * 1000)

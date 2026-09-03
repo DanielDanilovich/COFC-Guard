@@ -17,9 +17,11 @@ class LicenseActivity : AppCompatActivity() {
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Show trial status
         val isTrial = LicenseUtils.isTrialActive(this)
         binding.trialStatus.text = if (isTrial) "🎉 3-Day Free Trial Active" else "⏰ Trial Expired"
         
+        // Purchase buttons
         binding.monthlyButton.setOnClickListener {
             Toast.makeText(this, "📆 Monthly: €9.99 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
@@ -30,6 +32,7 @@ class LicenseActivity : AppCompatActivity() {
             Toast.makeText(this, "♾️ Lifetime: €690.00 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
 
+        // Activate license
         binding.activateButton.setOnClickListener {
             val key = binding.licenseInputEditText.text.toString().trim()
             if (key.isNotEmpty()) {

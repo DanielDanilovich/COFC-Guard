@@ -1,22 +1,23 @@
 package com.cofc.guard.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityMainBinding
+import com.cofc.guard.payment.PaymentSystem
+import com.cofc.guard.services.QuantumLayerService
 import com.cofc.guard.utils.LicenseUtils
-import kotlinx.coroutines.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val scope = CoroutineScope(Dispatchers.Main + Job())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +31,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        startQuantumLayers()
         setupUI()
         setupListeners()
         startRealTimeUpdates()
         animateUI()
         
+        // Show trial info
         if (LicenseUtils.isTrialActive(this)) {
             Toast.makeText(this, "🎉 3-Day Trial Active!", Toast.LENGTH_LONG).show()
         }
     }
 
+    private fun startQuantumLayers() {
+        val intent = Intent(this, QuantumLayerService::class.java)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            startForegroundService(intent)
+        } else {
+            startService(intent)
+        }
+    }
+
     private fun setupUI() {
-        // Set status color
         binding.statusIndicator.setCardBackgroundColor(ContextCompat.getColor(this, R.color.status_active))
         binding.protectionStatusText.text = "🟢 Protected"
         binding.protectionStatusText.setTextColor(ContextCompat.getColor(this, R.color.status_active))
-        
-        // Layers count
-        binding.layersCount.text = "21/21"
-        
-        // Stats
+        binding.layersCount.text = "${QuantumLayerService.getActiveLayers(this)}/21"
         binding.blockedCount.text = "0"
         binding.scannedCount.text = "1,247"
         binding.threatsCount.text = "0"
@@ -101,15 +108,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startRealTimeUpdates() {
-        scope.launch {
+        lifecycleScope.launch {
             while (true) {
-                // Update stats
                 binding.blockedCount.text = Random.nextInt(0, 15).toString()
                 binding.scannedCount.text = (1000 + Random.nextInt(0, 5000)).toString()
                 binding.threatsCount.text = Random.nextInt(0, 5).toString()
                 binding.uptimeText.text = android.text.format.DateFormat.format("HH:mm:ss", System.currentTimeMillis()).toString()
+                binding.layersCount.text = "${QuantumLayerService.getActiveLayers(this@MainActivity)}/21"
                 
-                // Random status change
                 if (Random.nextBoolean()) {
                     binding.statusIndicator.setCardBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.status_warning))
                     binding.protectionStatusText.text = "⚠️ Scanning..."
@@ -123,10 +129,5 @@ class MainActivity : AppCompatActivity() {
                 delay(3000)
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        scope.cancel()
     }
 }

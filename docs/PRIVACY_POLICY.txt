@@ -1,0 +1,39 @@
+# PRIVACY POLICY — COFC GUARD
+
+Version: 1.0.0
+Last Updated: September 3, 2026
+Company: COFC TECHNOLOGIES LTD (VAT: 515964807)
+
+## 1. Information We Collect
+
+COFC GUARD collects ZERO personal data.
+
+### We DO NOT collect:
+- ❌ Personal information
+- ❌ Location data
+- ❌ Device identifiers
+- ❌ Usage data
+- ❌ Logs or activity history
+
+### Information You Provide (Optional):
+- Email address for license delivery
+- Payment information (processed via cryptocurrency)
+
+## 2. Data Storage
+- License keys stored locally on your device
+- No data sent to external servers
+- No cloud storage
+
+## 3. Third-Party Services
+- USDT TRC20 (anonymous payment)
+- Email delivery service (license delivery only)
+
+## 4. Your Rights
+Since we collect no data, there is nothing to access, correct, or delete.
+
+## 5. Contact
+📧 support@cofcguard.com
+🌐 https://guard.cofc.io
+
+© 2026 COFC TECHNOLOGIES LTD
+🌍🔑😋👑✍️💚🫆

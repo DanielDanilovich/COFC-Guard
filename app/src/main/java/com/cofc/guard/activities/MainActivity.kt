@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Lottie Animation
         lottieShield = findViewById(R.id.lottieShield)
         lottieShield.setAnimation("shield.json")
         lottieShield.playAnimation()

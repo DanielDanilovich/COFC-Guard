@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         lottieShield = findViewById(R.id.lottieShield)
         lottieShield.setAnimation("shield.json")
         lottieShield.playAnimation()
-        lottieShield.repeatCount = LottieAnimationView.INFINITE
+        lottieShield.repeatCount = Int.MAX_VALUE // במקום INFINITE
 
         startGuardService()
         setupListeners()
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun animateUI() {
-        // Fade in animations
         binding.statusCard.alpha = 0f
         binding.statusCard.animate().alpha(1f).setDuration(800).start()
 

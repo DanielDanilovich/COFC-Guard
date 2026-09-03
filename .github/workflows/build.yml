@@ -19,6 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Generate Keystore
+      run: |
+        mkdir -p app/keystore
+        keytool -genkey -v -keystore app/keystore/cofc_guard.jks \
+          -alias cofc_guard -keyalg RSA -keysize 2048 -validity 10000 \
+          -storepass COFC_GUARD_2026 -keypass COFC_GUARD_2026 \
+          -dname "CN=COFC GUARD, OU=Cyber Security, O=COFC TECHNOLOGIES LTD, L=Jerusalem, ST=Israel, C=IL"
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 

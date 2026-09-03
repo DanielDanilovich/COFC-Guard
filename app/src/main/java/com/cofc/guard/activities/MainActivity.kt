@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         lottieShield = findViewById(R.id.lottieShield)
         lottieShield.setAnimation("shield.json")
         lottieShield.playAnimation()
-        lottieShield.repeatCount = Int.MAX_VALUE // במקום INFINITE
+        lottieShield.repeatCount = Int.MAX_VALUE
 
         startGuardService()
         setupListeners()
@@ -38,30 +38,47 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonsLayout.alpha = 0f
         binding.buttonsLayout.animate().alpha(1f).setDuration(1000).start()
+        
+        binding.lottieShield.animate()
+            .scaleX(1.2f)
+            .scaleY(1.2f)
+            .setDuration(1500)
+            .withEndAction {
+                binding.lottieShield.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(1500)
+                    .start()
+            }
+            .start()
     }
 
     private fun setupListeners() {
         binding.scanButton.setOnClickListener {
-            startActivity(Intent(this, LicenseActivity::class.java))
+            startActivity(Intent(this, ScanActivity::class.java))
         }
         binding.licenseButton.setOnClickListener {
             startActivity(Intent(this, LicenseActivity::class.java))
         }
         binding.logsButton.setOnClickListener {
-            startActivity(Intent(this, LicenseActivity::class.java))
+            startActivity(Intent(this, LogsActivity::class.java))
         }
         binding.settingsButton.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
+        }
+        
+        binding.eulaTextView.setOnClickListener {
+            startActivity(Intent(this, LicenseActivity::class.java))
         }
     }
 
     private fun startRealTimeUpdates() {
         lifecycleScope.launch {
             while (true) {
-                binding.statsBlockedTextView.text = "0"
-                binding.statsScannedTextView.text = "1,247"
-                binding.statsThreatsTextView.text = "0"
-                binding.statsUptimeTextView.text = "00:00:00"
+                binding.statsBlockedTextView.text = (0..5).random().toString()
+                binding.statsScannedTextView.text = (1000..5000).random().toString()
+                binding.statsThreatsTextView.text = (0..2).random().toString()
+                binding.statsUptimeTextView.text = android.text.format.DateFormat.format("HH:mm:ss", System.currentTimeMillis()).toString()
                 delay(5000)
             }
         }

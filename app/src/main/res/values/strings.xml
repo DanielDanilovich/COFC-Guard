@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">COFC GUARD</string>
     <string name="app_description">Absolute Quantum Cyber Protection</string>
-    <string name="app_version">2.0.0</string>
+    <string name="app_version">2.1.0</string>
 
     <!-- Dashboard -->
     <string name="dashboard_layers">Quantum Layers</string>
@@ -10,40 +10,40 @@
     <string name="dashboard_blocked">Blocked</string>
     <string name="dashboard_scanned">Scanned</string>
     <string name="dashboard_uptime">Uptime</string>
-    <string name="dashboard_status_active">Active</string>
-    <string name="dashboard_status_inactive">Inactive</string>
+    <string name="dashboard_status_active">🟢 Protected</string>
+    <string name="dashboard_status_inactive">🔴 Inactive</string>
 
     <!-- License -->
     <string name="license_title">License Management</string>
-    <string name="license_key">License Key</string>
+    <string name="license_key">Sovereign Key</string>
     <string name="license_plan">Plan</string>
     <string name="license_expires">Expires</string>
-    <string name="license_activate">Activate License</string>
+    <string name="license_activate">Activate Sovereign Key</string>
     <string name="license_renew">Renew License</string>
     <string name="license_purchase">Purchase License</string>
 
-    <!-- Plans (No Enterprise) -->
-    <string name="license_monthly">Monthly</string>
-    <string name="license_yearly">Yearly</string>
-    <string name="license_lifetime">Lifetime</string>
+    <!-- Plans -->
+    <string name="license_monthly">Monthly · €9.99</string>
+    <string name="license_yearly">Yearly · €69.00</string>
+    <string name="license_lifetime">♾️ Lifetime · €690.00</string>
     <string name="pricing_monthly">€9.99</string>
     <string name="pricing_yearly">€69.00</string>
     <string name="pricing_lifetime">€690.00</string>
 
     <string name="license_status">Status</string>
-    <string name="license_enter_key">Enter License Key</string>
-    <string name="license_valid">Valid</string>
-    <string name="license_invalid">Invalid</string>
-    <string name="license_expired">Expired</string>
+    <string name="license_enter_key">Enter Sovereign Key</string>
+    <string name="license_valid">✅ Valid</string>
+    <string name="license_invalid">❌ Invalid</string>
+    <string name="license_expired">⏰ Expired</string>
 
     <!-- Scan -->
-    <string name="scan_title">Security Scan</string>
+    <string name="scan_title">Quantum Scan</string>
     <string name="scan_start">Start Scan</string>
     <string name="scan_stop">Stop Scan</string>
-    <string name="scan_scanning">Scanning…</string>
-    <string name="scan_complete">Scan Complete</string>
-    <string name="scan_no_threats">No threats detected</string>
-    <string name="scan_threats_found">Threats found</string>
+    <string name="scan_scanning">🔍 Scanning…</string>
+    <string name="scan_complete">✅ Scan Complete</string>
+    <string name="scan_no_threats">✅ No threats detected</string>
+    <string name="scan_threats_found">⚠️ Threats found</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -59,7 +59,7 @@
     <string name="settings_version">Version</string>
 
     <!-- Logs -->
-    <string name="logs_title">Security Logs</string>
+    <string name="logs_title">Quantum Logs</string>
     <string name="logs_empty">No logs available</string>
     <string name="logs_export">Export Logs</string>
     <string name="logs_clear">Clear Logs</string>
@@ -70,7 +70,7 @@
     <string name="legal_eula">End User License Agreement</string>
 
     <!-- Security Badge -->
-    <string name="security_badge">🔒 Secure · 256-bit Quantum Encryption</string>
+    <string name="security_badge">🔒 256-bit Quantum Encryption</string>
 
     <!-- Notification -->
     <string name="default_notification_channel_id">cofc_guard_channel</string>

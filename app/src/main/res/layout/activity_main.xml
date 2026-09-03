@@ -167,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🔍 Scan"
+                    android:text="@string/scan_title"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginEnd="8dp" />
 
@@ -176,7 +176,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="💳 License"
+                    android:text="@string/license_title"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginStart="8dp" />
 
@@ -194,7 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="📁 Logs"
+                    android:text="@string/logs_title"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginEnd="8dp" />
 
@@ -203,7 +203,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="⚙️ Settings"
+                    android:text="@string/settings_title"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginStart="8dp" />
 
@@ -211,6 +211,7 @@
 
             <!-- EULA Link -->
             <TextView
+                android:id="@+id/eulaTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

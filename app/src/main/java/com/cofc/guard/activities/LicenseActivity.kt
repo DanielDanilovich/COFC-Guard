@@ -17,26 +17,25 @@ class LicenseActivity : AppCompatActivity() {
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Update status
         updateLicenseStatus()
 
-        // Activate button
+        // Activate
         binding.activateButton.setOnClickListener {
             val key = binding.licenseInputEditText.text.toString().trim()
             if (key.isNotEmpty()) {
                 if (CryptoUtils.validateLicense(key)) {
                     LicenseUtils.saveLicense(this, key, "lifetime")
-                    Toast.makeText(this, "✅ License Activated!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "✅ Sovereign Key Activated!", Toast.LENGTH_LONG).show()
                     navigateToMain()
                 } else {
-                    Toast.makeText(this, "❌ Invalid License Key", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "❌ Invalid Sovereign Key", Toast.LENGTH_LONG).show()
                 }
             } else {
-                Toast.makeText(this, "Please enter a license key", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter your Sovereign Key", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Purchase buttons
+        // Plans
         binding.monthlyButton.setOnClickListener {
             showPurchaseDialog("Monthly", "€9.99")
         }
@@ -44,7 +43,7 @@ class LicenseActivity : AppCompatActivity() {
             showPurchaseDialog("Yearly", "€69.00")
         }
         binding.lifetimeButton.setOnClickListener {
-            showPurchaseDialog("Lifetime", "€690.00")
+            showPurchaseDialog("♾️ Lifetime", "€690.00")
         }
     }
 
@@ -67,7 +66,7 @@ class LicenseActivity : AppCompatActivity() {
     }
 
     private fun showPurchaseDialog(plan: String, price: String) {
-        Toast.makeText(this, "$plan Plan: $price - USDT TRC20", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "$plan Plan: $price - USDT TRC20\nWallet: TKg46wxPcWFLVTTQzmvyGF2CUHLycgE65C", Toast.LENGTH_LONG).show()
     }
 
     private fun navigateToMain() {

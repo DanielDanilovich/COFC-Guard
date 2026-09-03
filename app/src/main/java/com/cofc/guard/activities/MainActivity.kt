@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Lottie
+        // Lottie Animation
         lottieShield = findViewById(R.id.lottieShield)
         lottieShield.setAnimation("shield.json")
         lottieShield.playAnimation()
@@ -88,7 +88,6 @@ class MainActivity : AppCompatActivity() {
     private fun startFakeDataUpdates() {
         lifecycleScope.launch {
             while (true) {
-                // Fake threat detection - using getColor directly
                 if (Random.nextBoolean()) {
                     binding.statusIndicator.setBackgroundResource(R.drawable.status_warning)
                     binding.protectionStatusTextView.text = "⚠️ Scanning..."

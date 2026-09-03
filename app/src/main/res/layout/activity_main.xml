@@ -28,14 +28,14 @@
             android:padding="16dp"
             android:paddingBottom="80dp">
 
-            <!-- Simple Shield Image instead of Lottie -->
-            <ImageView
-                android:id="@+id/shieldImage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+            <!-- Lottie Animation -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieShield"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_launcher"
-                android:contentDescription="Shield" />
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
 
             <!-- Status Card -->
             <com.google.android.material.card.MaterialCardView

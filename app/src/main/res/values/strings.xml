@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">COFC GUARD</string>
     <string name="app_description">Absolute Quantum Cyber Protection</string>
-    <string name="app_version">2.4.0</string>
+    <string name="app_version">3.0.0</string>
 
     <!-- Dashboard -->
     <string name="dashboard_layers">Quantum Layers</string>
@@ -26,9 +26,6 @@
     <string name="license_monthly">Monthly · €9.99</string>
     <string name="license_yearly">Yearly · €69.00</string>
     <string name="license_lifetime">♾️ Lifetime · €690.00</string>
-    <string name="pricing_monthly">€9.99</string>
-    <string name="pricing_yearly">€69.00</string>
-    <string name="pricing_lifetime">€690.00</string>
 
     <string name="license_status">Status</string>
     <string name="license_enter_key">Enter Sovereign Key</string>

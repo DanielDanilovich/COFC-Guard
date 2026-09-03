@@ -12,8 +12,8 @@ android {
         applicationId "com.cofc.guard"
         minSdk 29
         targetSdk 34
-        versionCode 270
-        versionName "2.7.0"
+        versionCode 300
+        versionName "3.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -85,6 +85,7 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.guolindev.permissionx:permissionx:1.7.0'
+    implementation 'com.airbnb.android:lottie:6.4.0'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     kapt 'com.github.bumptech.glide:compiler:4.16.0'
     testImplementation 'junit:junit:4.13.2'

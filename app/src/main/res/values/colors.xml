@@ -25,6 +25,3 @@
     <color name="gradient_mid">#00CCFF</color>
     <color name="gradient_end">#0055FF</color>
 </resources>
-    <color name="status_active">#00AA44</color>
-    <color name="status_error">#CC3300</color>
-    <color name="status_inactive">#888888</color>

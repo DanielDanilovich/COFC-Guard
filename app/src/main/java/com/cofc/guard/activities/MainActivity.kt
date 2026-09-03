@@ -2,6 +2,7 @@ package com.cofc.guard.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
@@ -10,6 +11,7 @@ import com.cofc.guard.databinding.ActivityMainBinding
 import com.cofc.guard.services.GuardService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Lottie Animation
+        // Lottie
         lottieShield = findViewById(R.id.lottieShield)
         lottieShield.setAnimation("shield.json")
         lottieShield.playAnimation()
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setupListeners()
         startRealTimeUpdates()
         animateUI()
+        startFakeDataUpdates()
     }
 
     private fun animateUI() {
@@ -40,14 +43,14 @@ class MainActivity : AppCompatActivity() {
         binding.buttonsLayout.animate().alpha(1f).setDuration(1000).start()
         
         binding.lottieShield.animate()
-            .scaleX(1.2f)
-            .scaleY(1.2f)
-            .setDuration(1500)
+            .scaleX(1.3f)
+            .scaleY(1.3f)
+            .setDuration(2000)
             .withEndAction {
                 binding.lottieShield.animate()
                     .scaleX(1f)
                     .scaleY(1f)
-                    .setDuration(1500)
+                    .setDuration(2000)
                     .start()
             }
             .start()
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.scanButton.setOnClickListener {
+            Toast.makeText(this, "🔍 Quantum Scan Started!", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ScanActivity::class.java))
         }
         binding.licenseButton.setOnClickListener {
@@ -66,19 +70,33 @@ class MainActivity : AppCompatActivity() {
         binding.settingsButton.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
-        
-        binding.eulaTextView.setOnClickListener {
-            startActivity(Intent(this, LicenseActivity::class.java))
-        }
     }
 
     private fun startRealTimeUpdates() {
         lifecycleScope.launch {
             while (true) {
-                binding.statsBlockedTextView.text = (0..5).random().toString()
-                binding.statsScannedTextView.text = (1000..5000).random().toString()
-                binding.statsThreatsTextView.text = (0..2).random().toString()
+                binding.statsBlockedTextView.text = Random.nextInt(0, 10).toString()
+                binding.statsScannedTextView.text = (1000 + Random.nextInt(0, 5000)).toString()
+                binding.statsThreatsTextView.text = Random.nextInt(0, 3).toString()
                 binding.statsUptimeTextView.text = android.text.format.DateFormat.format("HH:mm:ss", System.currentTimeMillis()).toString()
+                delay(3000)
+            }
+        }
+    }
+
+    private fun startFakeDataUpdates() {
+        lifecycleScope.launch {
+            while (true) {
+                // Fake threat detection
+                if (Random.nextBoolean()) {
+                    binding.statusIndicator.setBackgroundResource(R.drawable.status_warning)
+                    binding.protectionStatusTextView.text = "⚠️ Scanning..."
+                    binding.protectionStatusTextView.setTextColor(getColor(R.color.status_warning))
+                } else {
+                    binding.statusIndicator.setBackgroundResource(R.drawable.status_active)
+                    binding.protectionStatusTextView.text = "🟢 Protected"
+                    binding.protectionStatusTextView.setTextColor(getColor(R.color.status_active))
+                }
                 delay(5000)
             }
         }

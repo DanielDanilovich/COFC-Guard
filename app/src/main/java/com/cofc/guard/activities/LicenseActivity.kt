@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityLicenseBinding
-import com.cofc.guard.utils.CryptoUtils
-import com.cofc.guard.utils.LicenseUtils
 
 class LicenseActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLicenseBinding
@@ -17,19 +16,17 @@ class LicenseActivity : AppCompatActivity() {
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        updateLicenseStatus()
+        // Demo mode - always show as active
+        binding.licenseStatusTextView.text = "🟢 Active (Demo)"
+        binding.licenseStatusTextView.setTextColor(ContextCompat.getColor(this, R.color.status_active))
+        binding.licenseKeyTextView.text = "COFC-DEMO-2A1B-3C4D"
 
         // Activate
         binding.activateButton.setOnClickListener {
             val key = binding.licenseInputEditText.text.toString().trim()
             if (key.isNotEmpty()) {
-                if (CryptoUtils.validateLicense(key)) {
-                    LicenseUtils.saveLicense(this, key, "lifetime")
-                    Toast.makeText(this, "✅ Sovereign Key Activated!", Toast.LENGTH_LONG).show()
-                    navigateToMain()
-                } else {
-                    Toast.makeText(this, "❌ Invalid Sovereign Key", Toast.LENGTH_LONG).show()
-                }
+                Toast.makeText(this, "✅ Sovereign Key Activated! (Demo)", Toast.LENGTH_LONG).show()
+                navigateToMain()
             } else {
                 Toast.makeText(this, "Please enter your Sovereign Key", Toast.LENGTH_SHORT).show()
             }
@@ -37,36 +34,14 @@ class LicenseActivity : AppCompatActivity() {
 
         // Plans
         binding.monthlyButton.setOnClickListener {
-            showPurchaseDialog("Monthly", "€9.99")
+            Toast.makeText(this, "📆 Monthly Plan: €9.99 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
         binding.yearlyButton.setOnClickListener {
-            showPurchaseDialog("Yearly", "€69.00")
+            Toast.makeText(this, "📅 Yearly Plan: €69.00 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
         binding.lifetimeButton.setOnClickListener {
-            showPurchaseDialog("♾️ Lifetime", "€690.00")
+            Toast.makeText(this, "♾️ Lifetime Plan: €690.00 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun updateLicenseStatus() {
-        val status = LicenseUtils.getLicenseStatus(this)
-        binding.licenseStatusTextView.text = status
-        
-        when (status) {
-            "Active", "Lifetime" -> {
-                binding.licenseStatusTextView.setTextColor(getColor(R.color.status_active))
-                navigateToMain()
-            }
-            "Expired" -> {
-                binding.licenseStatusTextView.setTextColor(getColor(R.color.status_error))
-            }
-            else -> {
-                binding.licenseStatusTextView.setTextColor(getColor(R.color.status_inactive))
-            }
-        }
-    }
-
-    private fun showPurchaseDialog(plan: String, price: String) {
-        Toast.makeText(this, "$plan Plan: $price - USDT TRC20\nWallet: TKg46wxPcWFLVTTQzmvyGF2CUHLycgE65C", Toast.LENGTH_LONG).show()
     }
 
     private fun navigateToMain() {

@@ -1,36 +1,38 @@
 package com.cofc.guard.activities
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityLogsBinding
-import com.cofc.guard.models.LogEntry
 
 class LogsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogsBinding
-    private lateinit var adapter: LogAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Setup RecyclerView
-        adapter = LogAdapter()
-        binding.logsRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.logsRecyclerView.adapter = adapter
-
-        // Load logs
-        loadLogs()
-    }
-
-    private fun loadLogs() {
-        // טעינת לוגים ממסד נתונים
+        // Simulate logs
         val logs = listOf(
-            LogEntry(1, System.currentTimeMillis(), "HEARTBEAT", "System running", null),
-            LogEntry(2, System.currentTimeMillis() - 10000, "HEARTBEAT", "System running", null)
+            "🕒 21:45:12 ✅ HEARTBEAT OK",
+            "🕒 21:44:58 ✅ HEARTBEAT OK",
+            "🕒 21:44:44 ✅ HEARTBEAT OK",
+            "🕒 21:44:30 ✅ QUANTUM LAYER 21 ACTIVE",
+            "🕒 21:44:16 ✅ QUANTUM LAYER 20 ACTIVE",
+            "🕒 21:44:02 ✅ SYSTEM INITIALIZED",
+            "🕒 21:43:48 🚀 COFC GUARD STARTED"
         )
-        adapter.submitList(logs)
+        binding.logsTextView.text = logs.joinToString("\n")
+
+        binding.exportButton.setOnClickListener {
+            Toast.makeText(this, "📤 Logs exported!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.clearButton.setOnClickListener {
+            binding.logsTextView.text = "📁 Logs cleared"
+            Toast.makeText(this, "🗑️ Logs cleared", Toast.LENGTH_SHORT).show()
+        }
     }
 }

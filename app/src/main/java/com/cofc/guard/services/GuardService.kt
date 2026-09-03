@@ -6,16 +6,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import androidx.lifecycle.LifecycleService
-import androidx.lifecycle.lifecycleScope
 import com.cofc.guard.R
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class GuardService : LifecycleService() {
-
+class GuardService : Service() {
     private val CHANNEL_ID = "cofc_guard_channel"
     private val NOTIFICATION_ID = 1001
+    private val serviceScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     override fun onCreate() {
         super.onCreate()
@@ -24,16 +21,15 @@ class GuardService : LifecycleService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        super.onStartCommand(intent, flags, startId)
-
-        lifecycleScope.launch {
+        serviceScope.launch {
             while (true) {
-                // Monitor network, processes, threats
-                // Log heartbeat
+                // 1. Monitor network
+                // 2. Monitor processes
+                // 3. Monitor files
+                // 4. Log heartbeat
                 delay(10000)
             }
         }
-
         return START_STICKY
     }
 
@@ -64,6 +60,7 @@ class GuardService : LifecycleService() {
 
     override fun onDestroy() {
         super.onDestroy()
+        serviceScope.cancel()
     }
 
     override fun onBind(intent: Intent): IBinder? = null

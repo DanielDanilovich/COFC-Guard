@@ -1,0 +1,26 @@
+COFC GUARD — END USER LICENSE AGREEMENT (EULA)
+Version: 2.0.0 | Date: September 2026
+
+1. GRANT OF LICENSE
+COFC TECHNOLOGIES LTD grants you a non-exclusive, non-transferable license to use COFC GUARD.
+
+2. PLANS & PAYMENT
+- Monthly: €9.99
+- Yearly: €69.00
+- Lifetime: €690.00
+Payments are processed via USDT TRC20.
+
+3. LICENSE ACTIVATION
+License is per device. Activation requires internet connection.
+
+4. PRIVACY
+No personal data is collected. No logs are kept. No backdoors.
+
+5. REFUNDS
+All sales are final.
+
+6. GOVERNING LAW
+Governed by the laws of the European Union.
+
+Contact: support@cofcguard.com | Web: https://guard.cofc.io
+🌍🔑😋👑✍️💚🫆

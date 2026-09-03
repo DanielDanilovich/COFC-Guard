@@ -15,6 +15,22 @@ class LicenseActivity : AppCompatActivity() {
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Monthly
+        binding.monthlyButton.setOnClickListener {
+            Toast.makeText(this, "Monthly Plan: €9.99 - USDT TRC20", Toast.LENGTH_LONG).show()
+        }
+
+        // Yearly
+        binding.yearlyButton.setOnClickListener {
+            Toast.makeText(this, "Yearly Plan: €69.00 - USDT TRC20", Toast.LENGTH_LONG).show()
+        }
+
+        // Lifetime
+        binding.lifetimeButton.setOnClickListener {
+            Toast.makeText(this, "Lifetime Plan: €690.00 - USDT TRC20", Toast.LENGTH_LONG).show()
+        }
+
+        // Activate
         binding.activateButton.setOnClickListener {
             val key = binding.licenseInputEditText.text.toString().trim()
             if (key.isNotEmpty()) {

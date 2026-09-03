@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.airbnb.lottie.LottieAnimationView
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityMainBinding
 import com.cofc.guard.services.GuardService
@@ -16,30 +15,17 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var lottieShield: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        try {
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            // Lottie Animation
-            lottieShield = findViewById(R.id.lottieShield)
-            lottieShield.setAnimation("shield.json")
-            lottieShield.playAnimation()
-            lottieShield.repeatCount = Int.MAX_VALUE
-
-            startGuardService()
-            setupListeners()
-            startRealTimeUpdates()
-            animateUI()
-            startFakeDataUpdates()
-        } catch (e: Exception) {
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
-        }
+        startGuardService()
+        setupListeners()
+        startRealTimeUpdates()
+        animateUI()
+        startFakeDataUpdates()
     }
 
     private fun animateUI() {
@@ -48,19 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonsLayout.alpha = 0f
         binding.buttonsLayout.animate().alpha(1f).setDuration(1000).start()
-        
-        binding.lottieShield.animate()
-            .scaleX(1.3f)
-            .scaleY(1.3f)
-            .setDuration(2000)
-            .withEndAction {
-                binding.lottieShield.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(2000)
-                    .start()
-            }
-            .start()
     }
 
     private fun setupListeners() {

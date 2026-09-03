@@ -10,9 +10,9 @@ interface LogDao {
     @Insert
     suspend fun insertLog(log: ActivityLog)
 
-    @Query("SELECT * FROM ActivityLog ORDER BY timestamp DESC")
+    @Query("SELECT * FROM activity_logs ORDER BY timestamp DESC")
     suspend fun getAllLogs(): List<ActivityLog>
 
-    @Query("DELETE FROM ActivityLog")
+    @Query("DELETE FROM activity_logs")
     suspend fun clearLogs()
 }

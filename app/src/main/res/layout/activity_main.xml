@@ -28,14 +28,14 @@
             android:padding="16dp"
             android:paddingBottom="80dp">
 
-            <!-- Lottie Animation -->
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottieShield"
+            <!-- Simple Shield Image instead of Lottie -->
+            <ImageView
+                android:id="@+id/shieldImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="Shield" />
 
             <!-- Status Card -->
             <com.google.android.material.card.MaterialCardView
@@ -167,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/scan_title"
+                    android:text="🔍 Scan"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginEnd="8dp" />
 
@@ -176,7 +176,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/license_title"
+                    android:text="💳 License"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginStart="8dp" />
 
@@ -194,7 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/logs_title"
+                    android:text="📁 Logs"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginEnd="8dp" />
 
@@ -203,24 +203,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/settings_title"
+                    android:text="⚙️ Settings"
                     style="@style/Widget.COFCGuard.Button"
                     android:layout_marginStart="8dp" />
 
             </LinearLayout>
-
-            <!-- EULA Link -->
-            <TextView
-                android:id="@+id/eulaTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/legal_eula"
-                android:textColor="#0055FF"
-                android:textSize="12sp"
-                android:layout_marginTop="16dp"
-                android:clickable="true"
-                android:focusable="true" />
 
         </LinearLayout>
     </ScrollView>

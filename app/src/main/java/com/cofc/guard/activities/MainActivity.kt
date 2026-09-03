@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.cofc.guard.R
@@ -87,15 +88,15 @@ class MainActivity : AppCompatActivity() {
     private fun startFakeDataUpdates() {
         lifecycleScope.launch {
             while (true) {
-                // Fake threat detection
+                // Fake threat detection - using getColor directly
                 if (Random.nextBoolean()) {
                     binding.statusIndicator.setBackgroundResource(R.drawable.status_warning)
                     binding.protectionStatusTextView.text = "⚠️ Scanning..."
-                    binding.protectionStatusTextView.setTextColor(getColor(R.color.status_warning))
+                    binding.protectionStatusTextView.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.status_warning))
                 } else {
                     binding.statusIndicator.setBackgroundResource(R.drawable.status_active)
                     binding.protectionStatusTextView.text = "🟢 Protected"
-                    binding.protectionStatusTextView.setTextColor(getColor(R.color.status_active))
+                    binding.protectionStatusTextView.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.status_active))
                 }
                 delay(5000)
             }

@@ -14,9 +14,10 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, LicenseActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
-        }, 2000)
+        }, 2500)
     }
 }

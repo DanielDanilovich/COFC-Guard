@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8FAFF"
+    android:background="#F5F7FA"
     android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -13,9 +13,10 @@
         android:background="#0055FF"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="💳 License"
-        app:navigationIcon="@drawable/ic_back" />
+        app:titleTextColor="#FFFFFF" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/licenseCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
@@ -39,6 +40,15 @@
                 android:textColor="#00AA44"
                 android:layout_gravity="center" />
 
+            <TextView
+                android:id="@+id/licenseStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status: ✅ Active"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -55,10 +65,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/licenseInputEditText"
+                    android:id="@+id/licenseInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Sovereign Key"
@@ -70,8 +81,10 @@
                 android:id="@+id/activateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Activate"
-                style="@style/Widget.COFCGuard.Button"
+                android:text="✅ Activate"
+                android:backgroundTint="#0055FF"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
                 android:layout_marginTop="12dp" />
 
         </LinearLayout>
@@ -90,9 +103,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="📆 Monthly · €9.99"
-        style="@style/Widget.COFCGuard.Button"
-        android:backgroundTint="#F8FAFF"
+        android:backgroundTint="#F0F4FF"
         android:textColor="#0055FF"
+        android:padding="12dp"
         android:layout_marginTop="8dp" />
 
     <Button
@@ -100,9 +113,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="📅 Yearly · €69.00"
-        style="@style/Widget.COFCGuard.Button"
-        android:backgroundTint="#F8FAFF"
+        android:backgroundTint="#F0F4FF"
         android:textColor="#0055FF"
+        android:padding="12dp"
         android:layout_marginTop="8dp" />
 
     <Button
@@ -110,9 +123,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="♾️ Lifetime · €690.00"
-        style="@style/Widget.COFCGuard.Button"
         android:backgroundTint="#0055FF"
         android:textColor="#FFFFFF"
+        android:padding="12dp"
         android:layout_marginTop="8dp" />
 
 </LinearLayout>

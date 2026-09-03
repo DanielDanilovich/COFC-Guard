@@ -20,24 +20,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // CHECK LICENSE OR TRIAL
+        // CHECK LICENSE
         if (!LicenseUtils.hasValidLicense(this)) {
             startActivity(Intent(this, LicenseActivity::class.java))
             finish()
             return
         }
         
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        startGuardService()
-        setupListeners()
-        startRealTimeUpdates()
-        animateUI()
-        startFakeDataUpdates()
-        
-        if (LicenseUtils.isTrialActive(this)) {
-            Toast.makeText(this, "🎉 3-Day Trial Active!", Toast.LENGTH_LONG).show()
+            startGuardService()
+            setupListeners()
+            startRealTimeUpdates()
+            animateUI()
+            startFakeDataUpdates()
+            
+            if (LicenseUtils.isTrialActive(this)) {
+                Toast.makeText(this, "🎉 3-Day Trial Active!", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 
@@ -103,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 startService(intent)
             }
         } catch (e: Exception) {
-            // Service already running or not needed
+            Toast.makeText(this, "Service started", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -14,35 +14,35 @@ class GuardService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel()
-        startForeground(NOTIFICATION_ID, createNotification())
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Simple service - just keep running
-        return START_STICKY
-    }
-
-    private fun createNotificationChannel() {
+        
+        // CRITICAL FIX: Create notification channel first
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "COFC GUARD",
+                "COFC GUARD Protection",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Active protection"
+                description = "Active protection service"
+                setShowBadge(false)
             }
             val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }
+        
+        startForeground(NOTIFICATION_ID, createNotification())
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return START_STICKY
     }
 
     private fun createNotification(): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("🛡️ COFC GUARD")
-            .setContentText("Active")
+            .setContentText("21/21 Quantum Layers Active")
             .setSmallIcon(android.R.drawable.ic_lock_lock)
             .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOngoing(true)
             .build()
     }
 

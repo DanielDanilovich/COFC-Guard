@@ -3,8 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -90,10 +88,6 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.51.1'
     kapt 'com.google.dagger:hilt-compiler:2.51.1'
     implementation 'androidx.work:work-runtime-ktx:2.9.0'
-    implementation platform('com.google.firebase:firebase-bom:33.0.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'com.squareup.retrofit2:retrofit:2.11.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.11.0'

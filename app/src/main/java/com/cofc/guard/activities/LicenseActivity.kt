@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.cofc.guard.R
 import com.cofc.guard.databinding.ActivityLicenseBinding
-import com.cofc.guard.payment.PaymentSystem
-import com.cofc.guard.utils.CryptoUtils
 import com.cofc.guard.utils.LicenseUtils
 
 class LicenseActivity : AppCompatActivity() {
@@ -30,14 +28,6 @@ class LicenseActivity : AppCompatActivity() {
         binding.trialStatus.text = if (isTrial) "🎉 3-Day Free Trial Active" else "⏰ Trial Expired"
         binding.trialStatus.setTextColor(if (isTrial) ContextCompat.getColor(this, R.color.status_active) else ContextCompat.getColor(this, R.color.status_error))
         binding.licenseStatus.text = "Status: ${if (LicenseUtils.hasValidLicense(this)) "✅ Active" else "❌ Inactive"}"
-        
-        // Show customer info
-        val customer = PaymentSystem.getCustomer(this)
-        if (customer != null) {
-            binding.customerName.text = "👤 ${customer.name}"
-            binding.customerEmail.text = "📧 ${customer.email}"
-            binding.totalSpent.text = "💰 Total Spent: $${PaymentSystem.getTotalSpent(this)}"
-        }
     }
 
     private fun animateUI() {
@@ -47,32 +37,20 @@ class LicenseActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Crypto Payments (USDT TRC20)
-        binding.monthlyCrypto.setOnClickListener {
-            processPayment("Monthly", 9.99, "USDT TRC20")
+        binding.monthlyButton.setOnClickListener {
+            Toast.makeText(this, "📆 Monthly: €9.99 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
-        binding.yearlyCrypto.setOnClickListener {
-            processPayment("Yearly", 69.00, "USDT TRC20")
+        binding.yearlyButton.setOnClickListener {
+            Toast.makeText(this, "📅 Yearly: €69.00 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
-        binding.lifetimeCrypto.setOnClickListener {
-            processPayment("Lifetime", 690.00, "USDT TRC20")
+        binding.lifetimeButton.setOnClickListener {
+            Toast.makeText(this, "♾️ Lifetime: €690.00 - USDT TRC20", Toast.LENGTH_LONG).show()
         }
-        
-        // Credit Card Payments
-        binding.monthlyCard.setOnClickListener {
-            processPayment("Monthly", 9.99, "Credit Card")
-        }
-        binding.yearlyCard.setOnClickListener {
-            processPayment("Yearly", 69.00, "Credit Card")
-        }
-        binding.lifetimeCard.setOnClickListener {
-            processPayment("Lifetime", 690.00, "Credit Card")
-        }
-        
+
         binding.activateButton.setOnClickListener {
             val key = binding.licenseInput.text.toString().trim()
             if (key.isNotEmpty()) {
-                if (CryptoUtils.validateLicense(key)) {
+                if (key.startsWith("COFC-") && key.length >= 20) {
                     LicenseUtils.activateLicense(this, key, "lifetime")
                     Toast.makeText(this, "✅ License Activated!", Toast.LENGTH_LONG).show()
                     navigateToMain()
@@ -82,26 +60,6 @@ class LicenseActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter your license key", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun processPayment(plan: String, amount: Double, method: String) {
-        val customer = PaymentSystem.getCustomer(this)
-        if (customer == null) {
-            // Create customer if not exists
-            val deviceId = CryptoUtils.generateHash(android.provider.Settings.Secure.getString(contentResolver, android.provider.Settings.Secure.ANDROID_ID))
-            PaymentSystem.createCustomer(this, "Guest", "guest@example.com", deviceId)
-        }
-        
-        if (PaymentSystem.processPayment(this, amount, method)) {
-            // Activate license
-            val licenseKey = CryptoUtils.generateHash("${plan}:${System.currentTimeMillis()}:${customer?.id}")
-            LicenseUtils.activateLicense(this, licenseKey, plan.lowercase())
-            
-            Toast.makeText(this, "✅ Payment Successful!\n$plan Plan - $method\nLicense Activated!", Toast.LENGTH_LONG).show()
-            navigateToMain()
-        } else {
-            Toast.makeText(this, "❌ Payment Failed", Toast.LENGTH_SHORT).show()
         }
     }
 

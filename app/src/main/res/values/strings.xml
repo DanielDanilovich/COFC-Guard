@@ -2,11 +2,5 @@
 <resources>
     <string name="app_name">COFC GUARD</string>
     <string name="app_description">Absolute Quantum Cyber Protection</string>
-    <string name="app_version">6.0.1</string>
-    
-    <string-array name="themes">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>System</item>
-    </string-array>
+    <string name="app_version">6.0.2</string>
 </resources>
